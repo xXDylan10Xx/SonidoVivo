@@ -1,0 +1,20 @@
+.NavbarEstilo{
+
+    background-color: #0F172A;
+}
+
+.NavbarCarrito {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.NavbarIniciarSesion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    white-space: nowrap;
+}

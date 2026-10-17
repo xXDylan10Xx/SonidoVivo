@@ -1,0 +1,12 @@
+
+
+.FondoEstilo{
+    background: linear-gradient( rgba(232, 232, 232, 0.80), rgba(232, 232, 232, 0.80) ), url("../Imagenes/Fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 20px;
+}
+
+

@@ -1,3 +1,4 @@
+import Registro from './Paginas/Registro'
 import { Routes,Route } from 'react-router-dom'
 import './Estilos/General.css'
 import Navbar from './Componentes/Organismos/Navbar'
@@ -15,6 +16,7 @@ function App() {
     <Navbar/>
     
     <main className="FondoEstilo">
+      <Routes><Route path='/Registro' element={<Registro/>} /></Routes>
 
       <Routes>
         <Route

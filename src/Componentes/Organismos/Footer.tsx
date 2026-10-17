@@ -5,7 +5,7 @@ import Instagram from "../../Imagenes/Contacto/InstagramIcono.png"
 import Facebook from "../../Imagenes/Contacto/FacebookIcono.png"
 import WhatsApp from "../../Imagenes/Contacto/WhatsappIcono.png"
 import X from "../../Imagenes/Contacto/XIcono.png"
-import { Link } from "react-router-dom";
+
 
 
 function Footer(){

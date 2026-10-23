@@ -2,6 +2,7 @@
 import { useState } from "react";
 import CampoFormulario from "../Componentes/Moleculas/CampoFormulario";
 import Button from "../Componentes/Atomos/Boton";
+import Boton from "../Componentes/Atomos/Boton";
 function Registro() {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -40,11 +41,13 @@ function Registro() {
         error={error}
       />
 
-      <Button
-        texto="Registrarse"
-        variante="success"
-        onClick={validarFormulario}
-      />
+      <button
+      type="button"
+      className="btn btn-success"
+      onClick={validarFormulario}
+>
+  Registrarse
+</button>
     </div>
   );
 }

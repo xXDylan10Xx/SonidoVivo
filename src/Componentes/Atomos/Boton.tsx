@@ -1,21 +1,20 @@
 
-import type { ButtonHTMLAttributes } from "react";
+import { Link } from "react-router-dom";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    texto: string;
-    variante?: "primary" | "secondary" | "success" | "danger";
+interface BotonProps{
+    id:number;
 }
 
-function Button({
-    texto,
-    variante = "primary",
-    ...props
-}: ButtonProps) {
+
+function Boton({id}: BotonProps){
     return (
-        <button className={`btn btn-${variante}`} {...props}>
-        {texto}
-        </button>
-    );
+        <Link to={`/productos/${id}`}
+        className="btn btn-primary"
+        >Ver producto</Link>
+    )
+
 }
 
-export default Button;
+
+export default Boton;
+

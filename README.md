@@ -103,3 +103,10 @@ Para comprobar también compilación y estilo:
 Referencias: [Jasmine](https://jasmine.github.io/tutorials/your_first_suite.html),
 [Karma con Jasmine](https://github.com/karma-runner/karma-jasmine) y
 [act de React](https://react.dev/reference/react/act).
+
+Objetivo acordado para esta entrega: al menos 15 pruebas en Jasmine/Karma,
+incluyendo lógica, DOM, eventos y mocks. El informe de cobertura se completará
+cuando estén incorporados los casos de prueba.
+
+Carrito.spec.tsx comprueba el flujo desde los componentes reales de la aplicación
+y simula las lecturas y escrituras de localStorage con spies de Jasmine.

@@ -61,62 +61,27 @@ function App() {
     <Navbar/>
     
     <main className="FondoEstilo">
-      <Routes><Route path='/Registro' element={<Registro/>} /></Routes>
-
       <Routes>
+        <Route path='/' element={<Inicio/>} />
+        <Route path='/Registro' element={<Registro/>} />
         <Route
-        path='/'
-        element={<Inicio/>}
-        />  
-      </Routes>
-
-      <Routes>
+          path='/Productos'
+          element={<Productos carrito={carrito} onAgregarProducto={agregarProducto}/>}
+        />
+        <Route path='/Contacto' element={<Contacto/>} />
+        <Route path='/QuienesSomos' element={<QuienesSomos/>} />
         <Route
-        path='/Productos'
-        element={<Productos carrito={carrito} onAgregarProducto={agregarProducto}/>}
-        />  
-      </Routes>
-
-      <Routes>
+          path='/Carrito'
+          element={<Carrito carrito={carrito} onCambiarCantidad={cambiarCantidad} onEliminarProducto={eliminarProducto}/>}
+        />
+        <Route path='/IniciarSesion' element={<IniciarSesion/>} />
         <Route
-        path='/Contacto'
-        element={<Contacto/>}
-        />  
-      </Routes>
-
-      <Routes>
-        <Route
-        path='/QuienesSomos'
-        element={<QuienesSomos/>}
-        />  
-      </Routes>
-
-      <Routes>
-        <Route
-        path='/Carrito'
-        element={<Carrito carrito={carrito} onCambiarCantidad={cambiarCantidad} onEliminarProducto={eliminarProducto}/>}
-        />  
-      </Routes>
-
-      <Routes>
-        <Route
-        path='/IniciarSesion'
-        element={<IniciarSesion/>}
-        />  
-      </Routes>
-
-      <Routes>
-        <Route path='/Pago' element={<Pago carrito={carrito} onPagoConfirmado={() => setCarrito([])}/>} />
-      </Routes>
-
-      <Routes>
+          path='/Pago'
+          element={<Pago carrito={carrito} onPagoConfirmado={() => setCarrito([])}/>}
+        />
         <Route path='/Confirmacion' element={<Confirmacion/>} />
-      </Routes>
-
-      <Routes>
         <Route path='/PagoFallido' element={<PagoFallido/>} />
       </Routes>
-
     </main>
 
     <Footer/>

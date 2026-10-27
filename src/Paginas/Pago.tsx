@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import CampoFormulario from '../Componentes/Moleculas/CampoFormulario'
 import Button from '../Componentes/Atomos/Boton'
 import { crearPedido, validarDatosPago } from '../Datos/pago'
@@ -14,7 +14,8 @@ interface PagoProps {
 
 function Pago({ carrito, onPagoConfirmado }: PagoProps) {
     const navigate = useNavigate()
-    const [datos, setDatos] = useState<DatosPago>({
+    const datosAnteriores = useLocation().state as DatosPago | null
+    const [datos, setDatos] = useState<DatosPago>(datosAnteriores ?? {
         nombre: '',
         correo: '',
         direccion: '',
@@ -23,6 +24,7 @@ function Pago({ carrito, onPagoConfirmado }: PagoProps) {
         metodo: 'tarjeta',
     })
     const [error, setError] = useState('')
+    const [simularRechazo, setSimularRechazo] = useState(false)
 
     const total = carrito.reduce((suma, producto) =>
         suma + producto.precio * producto.cantidad, 0
@@ -40,6 +42,11 @@ function Pago({ carrito, onPagoConfirmado }: PagoProps) {
         setError(mensaje)
 
         if (mensaje) return
+
+        if (simularRechazo) {
+            navigate('/PagoFallido', { state: datos })
+            return
+        }
 
         const pedido = crearPedido(datos, carrito)
 
@@ -145,6 +152,19 @@ function Pago({ carrito, onPagoConfirmado }: PagoProps) {
                                         <option value="tarjeta">Tarjeta (simulación)</option>
                                         <option value="transferencia">Transferencia (simulación)</option>
                                     </select>
+                                </div>
+
+                                <div className="form-check mb-3">
+                                    <input
+                                        id="pago-simular-rechazo"
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        checked={simularRechazo}
+                                        onChange={(e) => setSimularRechazo(e.target.checked)}
+                                    />
+                                    <label htmlFor="pago-simular-rechazo" className="form-check-label">
+                                        Simular pago rechazado
+                                    </label>
                                 </div>
 
                                 {error && <p className="alert alert-danger" role="alert">{error}</p>}

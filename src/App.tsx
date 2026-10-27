@@ -12,6 +12,7 @@ import QuienesSomos from './Paginas/QuienesSomos'
 import Carrito from './Paginas/Carrito'
 import Pago from './Paginas/Pago'
 import Confirmacion from './Paginas/Confirmacion'
+import PagoFallido from './Paginas/PagoFallido'
 import IniciarSesion from './Paginas/IniciarSesion'
 import Footer from './Componentes/Organismos/Footer'
 
@@ -110,6 +111,10 @@ function App() {
 
       <Routes>
         <Route path='/Confirmacion' element={<Confirmacion/>} />
+      </Routes>
+
+      <Routes>
+        <Route path='/PagoFallido' element={<PagoFallido/>} />
       </Routes>
 
     </main>

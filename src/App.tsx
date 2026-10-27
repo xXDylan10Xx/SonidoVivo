@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Producto, ProductoCarrito } from './Datos/productos'
+import { cargarCarrito, guardarCarrito } from './Datos/carrito'
 import Registro from './Paginas/Registro'
 import { Routes,Route } from 'react-router-dom'
 import './Estilos/General.css'
@@ -13,7 +14,11 @@ import IniciarSesion from './Paginas/IniciarSesion'
 import Footer from './Componentes/Organismos/Footer'
 
 function App() {
-  const [carrito, setCarrito] = useState<ProductoCarrito[]>([])
+  const [carrito, setCarrito] = useState<ProductoCarrito[]>(cargarCarrito)
+
+  useEffect(() => {
+    guardarCarrito(carrito)
+  }, [carrito])
 
   function agregarProducto(producto: Producto) {
     if (producto.stock < 1) return

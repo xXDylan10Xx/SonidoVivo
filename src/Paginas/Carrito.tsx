@@ -9,6 +9,10 @@ interface CarritoProps {
 }
 
 function Carrito({ carrito, onCambiarCantidad, onEliminarProducto }: CarritoProps) {
+    const subtotal = carrito.reduce((suma, producto) =>
+        suma + producto.precio * producto.cantidad, 0
+    )
+    const total = subtotal
     return (
         <section className="container py-4" aria-labelledby="titulo-carrito">
             <h1 id="titulo-carrito" className="mb-4">Mi carrito</h1>
@@ -35,6 +39,9 @@ function Carrito({ carrito, onCambiarCantidad, onEliminarProducto }: CarritoProp
                                     <h2 className="h5">{producto.nombre}</h2>
                                     <p className="mb-0">
                                         Precio unitario: {'$' + producto.precio.toLocaleString('es-CL')}
+                                    </p>
+                                    <p className="mb-0">
+                                        Subtotal: {'$' + (producto.precio * producto.cantidad).toLocaleString('es-CL')}
                                     </p>
                                 </div>
 
@@ -64,6 +71,28 @@ function Carrito({ carrito, onCambiarCantidad, onEliminarProducto }: CarritoProp
                             </li>
                         ))}
                     </ul>
+
+                    <div className="card mb-4" aria-labelledby="titulo-resumen">
+                        <div className="card-body">
+                            <h2 id="titulo-resumen" className="h4">Resumen de la compra</h2>
+                            <dl className="mb-0">
+                                <div className="d-flex flex-wrap justify-content-between gap-2">
+                                    <dt>Subtotal</dt>
+                                    <dd>{'$' + subtotal.toLocaleString('es-CL')}</dd>
+                                </div>
+                                <div className="d-flex flex-wrap justify-content-between gap-2">
+                                    <dt>Despacho</dt>
+                                    <dd>Incluido</dd>
+                                </div>
+                                <div className="d-flex flex-wrap justify-content-between gap-2 border-top pt-2">
+                                    <dt>Total</dt>
+                                    <dd className="fw-bold" aria-live="polite">
+                                        {'$' + total.toLocaleString('es-CL')}
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
 
                     <Link to="/Productos" className="btn btn-outline-primary">
                         Seguir comprando

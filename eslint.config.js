@@ -19,4 +19,10 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    files: ['src/Tests/**/*.spec.{ts,tsx}'],
+    languageOptions: {
+      globals: globals.jasmine,
+    },
+  },
 ])

@@ -1,3 +1,5 @@
+import type { ProductoCarrito } from './productos'
+
 export interface DatosPago {
     nombre: string
     correo: string
@@ -30,4 +32,44 @@ export function validarDatosPago(datos: DatosPago): string {
     }
 
     return ''
+}
+
+export interface Pedido {
+    numero: string
+    datos: DatosPago
+    productos: ProductoCarrito[]
+    total: number
+    seguimiento: string
+}
+
+export function crearPedido(datos: DatosPago, carrito: ProductoCarrito[]): Pedido | null {
+    if (
+        validarDatosPago(datos) ||
+        carrito.length === 0 ||
+        carrito.some((producto) =>
+            !Number.isInteger(producto.cantidad) ||
+            producto.cantidad < 1 ||
+            producto.cantidad > producto.stock
+        )
+    ) {
+        return null
+    }
+
+    const numero = Date.now().toString()
+
+    return {
+        numero: 'SV-' + numero,
+        datos: {
+            ...datos,
+            nombre: datos.nombre.trim(),
+            correo: datos.correo.trim(),
+            direccion: datos.direccion.trim(),
+            comuna: datos.comuna.trim(),
+        },
+        productos: carrito.map((producto) => ({ ...producto })),
+        total: carrito.reduce((suma, producto) =>
+            suma + producto.precio * producto.cantidad, 0
+        ),
+        seguimiento: 'DEMO-' + numero,
+    }
 }

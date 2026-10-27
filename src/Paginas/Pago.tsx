@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CampoFormulario from '../Componentes/Moleculas/CampoFormulario'
 import Button from '../Componentes/Atomos/Boton'
-import { validarDatosPago } from '../Datos/pago'
+import { crearPedido, validarDatosPago } from '../Datos/pago'
 import type { DatosPago } from '../Datos/pago'
 import type { ProductoCarrito } from '../Datos/productos'
 
 interface PagoProps {
     carrito: ProductoCarrito[]
+    onPagoConfirmado: () => void
 }
 
-function Pago({ carrito }: PagoProps) {
+function Pago({ carrito, onPagoConfirmado }: PagoProps) {
+    const navigate = useNavigate()
     const [datos, setDatos] = useState<DatosPago>({
         nombre: '',
         correo: '',
@@ -21,7 +23,6 @@ function Pago({ carrito }: PagoProps) {
         metodo: 'tarjeta',
     })
     const [error, setError] = useState('')
-    const [validado, setValidado] = useState(false)
 
     const total = carrito.reduce((suma, producto) =>
         suma + producto.precio * producto.cantidad, 0
@@ -29,7 +30,6 @@ function Pago({ carrito }: PagoProps) {
 
     function validarPago(evento: FormEvent<HTMLFormElement>) {
         evento.preventDefault()
-        setValidado(false)
 
         if (carrito.length === 0) {
             setError('Agrega productos al carrito antes de continuar.')
@@ -41,7 +41,15 @@ function Pago({ carrito }: PagoProps) {
 
         if (mensaje) return
 
-        setValidado(true)
+        const pedido = crearPedido(datos, carrito)
+
+        if (!pedido) {
+            setError('Revisa las cantidades de los productos antes de confirmar el pago.')
+            return
+        }
+
+        onPagoConfirmado()
+        navigate('/Confirmacion', { state: pedido })
     }
 
     return (
@@ -65,10 +73,7 @@ function Pago({ carrito }: PagoProps) {
                             <form
                                 className="card card-body"
                                 onSubmit={validarPago}
-                                onChange={() => {
-                                    setError('')
-                                    setValidado(false)
-                                }}
+                                onChange={() => setError('')}
                                 noValidate
                             >
                                 <h2 className="h4">Datos del cliente y entrega</h2>
@@ -143,14 +148,10 @@ function Pago({ carrito }: PagoProps) {
                                 </div>
 
                                 {error && <p className="alert alert-danger" role="alert">{error}</p>}
-                                {validado && (
-                                    <p className="alert alert-success" role="status">
-                                        Los datos de tu compra son válidos.
-                                    </p>
-                                )}
+
 
                                 <div className="d-flex flex-wrap gap-2">
-                                    <Button type="submit" texto="Validar datos de pago" variante="success" />
+                                    <Button type="submit" texto="Confirmar pago simulado" variante="success" />
                                     <Link to="/Carrito" className="btn btn-outline-primary">
                                         Volver al carrito
                                     </Link>

@@ -11,6 +11,7 @@ import Contacto from './Paginas/Contacto'
 import QuienesSomos from './Paginas/QuienesSomos'
 import Carrito from './Paginas/Carrito'
 import Pago from './Paginas/Pago'
+import Confirmacion from './Paginas/Confirmacion'
 import IniciarSesion from './Paginas/IniciarSesion'
 import Footer from './Componentes/Organismos/Footer'
 
@@ -104,7 +105,11 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path='/Pago' element={<Pago carrito={carrito}/>} />
+        <Route path='/Pago' element={<Pago carrito={carrito} onPagoConfirmado={() => setCarrito([])}/>} />
+      </Routes>
+
+      <Routes>
+        <Route path='/Confirmacion' element={<Confirmacion/>} />
       </Routes>
 
     </main>

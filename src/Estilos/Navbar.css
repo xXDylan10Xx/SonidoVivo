@@ -18,3 +18,10 @@
     margin-left: 12px;
     white-space: nowrap;
 }
+
+@media (max-width: 991.98px) {
+    .NavbarCarrito,
+    .NavbarIniciarSesion {
+        margin-left: 0;
+    }
+}

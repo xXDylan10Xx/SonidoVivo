@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import type { Producto, ProductoCarrito } from './Datos/productos'
 import Registro from './Paginas/Registro'
 import { Routes,Route } from 'react-router-dom'
 import './Estilos/General.css'
@@ -11,6 +13,41 @@ import IniciarSesion from './Paginas/IniciarSesion'
 import Footer from './Componentes/Organismos/Footer'
 
 function App() {
+  const [carrito, setCarrito] = useState<ProductoCarrito[]>([])
+
+  function agregarProducto(producto: Producto) {
+    if (producto.stock < 1) return
+
+    setCarrito((actual) => {
+      const existente = actual.find((item) => item.id === producto.id)
+
+      if (existente) {
+        if (existente.cantidad >= existente.stock) return actual
+
+        return actual.map((item) =>
+          item.id === producto.id
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        )
+      }
+
+      return [...actual, { ...producto, cantidad: 1 }]
+    })
+  }
+
+  function cambiarCantidad(id: string, cantidad: number) {
+    if (!Number.isInteger(cantidad) || cantidad < 1) return
+
+    setCarrito((actual) => actual.map((item) => {
+      if (item.id !== id || cantidad > item.stock) return item
+      return { ...item, cantidad }
+    }))
+  }
+
+  function eliminarProducto(id: string) {
+    setCarrito((actual) => actual.filter((item) => item.id !== id))
+  }
+
   return (
     <>
     <Navbar/>
@@ -28,7 +65,7 @@ function App() {
       <Routes>
         <Route
         path='/Productos'
-        element={<Productos/>}
+        element={<Productos carrito={carrito} onAgregarProducto={agregarProducto}/>}
         />  
       </Routes>
 
@@ -49,7 +86,7 @@ function App() {
       <Routes>
         <Route
         path='/Carrito'
-        element={<Carrito/>}
+        element={<Carrito carrito={carrito} onCambiarCantidad={cambiarCantidad} onEliminarProducto={eliminarProducto}/>}
         />  
       </Routes>
 

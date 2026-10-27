@@ -94,9 +94,14 @@ function Carrito({ carrito, onCambiarCantidad, onEliminarProducto }: CarritoProp
                         </div>
                     </div>
 
-                    <Link to="/Productos" className="btn btn-outline-primary">
-                        Seguir comprando
-                    </Link>
+                    <div className="d-flex flex-wrap gap-2">
+                        <Link to="/Productos" className="btn btn-outline-primary">
+                            Seguir comprando
+                        </Link>
+                        <Link to="/Pago" className="btn btn-success">
+                            Ir al pago
+                        </Link>
+                    </div>
                 </>
             )}
         </section>

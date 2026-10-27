@@ -110,3 +110,5 @@ cuando estén incorporados los casos de prueba.
 
 Carrito.spec.tsx comprueba el flujo desde los componentes reales de la aplicación
 y simula las lecturas y escrituras de localStorage con spies de Jasmine.
+
+El [documento de cobertura y control de calidad](docs/CoberturaTesting.md) contiene la matriz de las 15 pruebas actuales, resultados y evidencia. Los porcentajes de cobertura quedan pendientes de la integración del equipo.

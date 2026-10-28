@@ -1,26 +1,19 @@
-.NavbarEstilo{
-
-    background-color: #0F172A;
-}
-
-.NavbarCarrito {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
+.NavbarEstilo {
+    background-color: #f8f9fa;
 }
 
 .NavbarIniciarSesion {
+    margin-left: auto;
+}
+
+.NavbarCarrito {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-left: 12px;
     white-space: nowrap;
 }
 
 @media (max-width: 991.98px) {
-    .NavbarCarrito,
     .NavbarIniciarSesion {
         margin-left: 0;
     }

@@ -1,27 +1,23 @@
 .FooterEstilo {
+    background-color: #212529;
     color: white;
-    background-color: #0F172A;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.titulo-footer {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.redes-footer {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 24px;
-    padding: 24px 16px;
-    text-align: center;
+    gap: 35px;
+    margin-bottom: 20px;
 }
 
-.ContenidoFooter {
-    flex: 0 1 360px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 768px) {
-    .ContenidoFooter {
-        flex-basis: 100%;
-    }
+.FooterEstilo hr {
+    width: 80%;
+    margin: 20px auto;
 }

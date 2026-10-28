@@ -1,0 +1,54 @@
+.administracion {
+    width: min(94%, 1200px);
+    margin: 30px auto 50px;
+    padding: 34px;
+    background: #fff;
+    border-radius: 12px;
+    color: #20233a;
+}
+
+.admin-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid #e7e7f1;
+    padding-bottom: 22px;
+}
+
+.admin-cabecera h1 { color: #2925a8; font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+.admin-cabecera p:last-child { color: #5d6275; margin-bottom: 0; }
+.admin-etiqueta { color: #5146cd; font-size: .78rem; font-weight: 700; letter-spacing: .08em; margin-bottom: 10px; }
+.admin-usuario { color: #3930ad; background: #efefff; border-radius: 20px; font-size: .85rem; font-weight: 600; padding: 8px 14px; }
+.admin-aviso { margin: 20px 0; padding: 12px 15px; color: #50546a; background: #f6f6fb; border-left: 3px solid #8078df; border-radius: 4px; font-size: .9rem; }
+.admin-navegacion { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #e7e7f1; margin-bottom: 28px; }
+.admin-navegacion a { padding: 10px 16px; color: #52576a; text-decoration: none; border-bottom: 3px solid transparent; font-weight: 600; }
+.admin-navegacion a:hover, .admin-navegacion a.activo { color: #2925a8; border-bottom-color: #5146cd; }
+.admin-resumen h2, .admin-seccion h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 7px; }
+.admin-introduccion p, .admin-seccion p { color: #676b7b; margin-bottom: 0; }
+.admin-indicadores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.admin-indicador, .admin-acceso { border: 1px solid #e3e4f0; border-radius: 10px; padding: 22px; background: #fafaff; }
+.admin-indicador p { margin-bottom: 8px; font-weight: 600; }
+.admin-indicador strong { display: block; color: #2925a8; font-size: 2rem; line-height: 1.1; }
+.admin-indicador span, .admin-acceso span { color: #686d7c; font-size: .9rem; }
+.admin-subtitulo { margin-top: 32px; margin-bottom: 15px !important; }
+.admin-accesos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.admin-acceso { display: flex; flex-direction: column; gap: 8px; color: #20233a; text-decoration: none; }
+.admin-acceso:hover { border-color: #8b83df; background: #f5f4ff; }
+.admin-acceso strong { font-size: 1.05rem; }
+.admin-acceso .admin-enlace { color: #3930ad; font-weight: 600; margin-top: 8px; }
+.admin-seccion { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; }
+.admin-formulario { max-width: 850px; border-color: #dedfec; padding: 24px; }
+.admin-formulario h3 { color: #2925a8; font-size: 1.2rem; font-weight: 700; margin-bottom: 18px; }
+.admin-formulario .form-label { font-weight: 500; }
+.admin-tabla { border: 1px solid #e3e4f0; border-radius: 10px; }
+.admin-tabla th { color: #494d62; background: #f4f4fb; font-size: .88rem; white-space: nowrap; }
+.admin-tabla td, .admin-tabla th { padding: 13px 16px; }
+.admin-tabla td:last-child { min-width: 150px; white-space: nowrap; }
+@media (max-width: 767px) {
+    .administracion { width: 94%; padding: 22px; margin-top: 20px; }
+    .admin-cabecera { flex-direction: column; }
+    .admin-indicadores { grid-template-columns: 1fr; gap: 12px; }
+    .admin-accesos { grid-template-columns: 1fr; }
+    .admin-navegacion a { padding: 9px 10px; }
+}
